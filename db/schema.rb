@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_155748) do
+ActiveRecord::Schema.define(version: 2019_03_24_175334) do
 
   create_table "journals", force: :cascade do |t|
     t.integer "amount"
-    t.string "type"
+    t.string "kind"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

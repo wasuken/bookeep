@@ -1,3 +1,27 @@
-<header id="header" class="header"><%= @cuser.email %></header>
-<>
-<p><%= link_to "logout", destroy_user_session_path, method: :delete  %></p>
+<header id="header" class="header">
+  <%= current_user.email %> : <%= link_to "logout", destroy_user_session_path, method: :delete  %>
+</header>
+
+<%= form_for @journal, url: {:action => 'create'} do |f| %>
+<%= f.text_field :amount %>
+<%= select :kind, :name, [["負債","liabilities"],["資産","assets"]] %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<%= f.submit :submit %>
+<% end %>
+<div class="main">
+  <div class="assets">
+	<p>資産</p>
+	<% @journals.filter{|j| j.kind == "assets" }.each do |j| %>
+	<p><%= j.amount %></p>
+	<% end %>
+  </div>
+  <div class="liabilities">
+	<p>負債</p>
+	<% @journals.filter{|j| j.kind == "liabilities" }.each do |j| %>
+	<p>-<%= j.amount %></p>
+	<% end %>
+  </div>
+</div>
+<div class="answer">
+  <p>合計:<%= @journals.filter{|j| j.kind == "assets" }.map(&:amount).sum - @journals.filter{|j| j.kind == "liabilities" }.map(&:amount).sum %></p>
+</div>
