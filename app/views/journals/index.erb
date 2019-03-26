@@ -13,13 +13,13 @@
   <div class="assets">
 	<p>資産</p>
 	<% @journals.filter{|j| j.kind == "assets" }.each do |j| %>
-	<p><%= j.usefulness %>[<%= j.amount %>](<%= j.created_at %>)</p>
+	<p><a href="/journal/update?id=<%=j.id%>"><%= j.usefulness %></a>[<%= j.amount %>](<%= j.created_at %>)</p>
 	<% end %>
   </div>
   <div class="liabilities">
 	<p>負債</p>
 	<% @journals.filter{|j| j.kind == "liabilities" }.each do |j| %>
-	<p><%= j.usefulness %>[<%= j.amount %>](<%= j.created_at %>)</p>
+	<p><a href="/journal/update?id=<%=j.id%>"><%= j.usefulness %></a>[<%= j.amount %>](<%= j.created_at %>)</p>
 	<% end %>
   </div>
 </div>
