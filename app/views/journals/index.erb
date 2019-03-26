@@ -3,8 +3,9 @@
 </header>
 
 <%= form_for @journal, url: {:action => 'create'} do |f| %>
-<%= f.text_field :amount %>
-<%= select :kind, :name, [["負債","liabilities"],["資産","assets"]] %>
+<p>金額:<%= f.text_field :amount %></p>
+<p>用途<%= f.text_field :usefulness %></p>
+<p>種類:<%= select :kind, :name, [["負債","liabilities"],["資産","assets"]] %></p>
 <%= f.hidden_field :user_id, value: current_user.id %>
 <%= f.submit :submit %>
 <% end %>
@@ -12,13 +13,13 @@
   <div class="assets">
 	<p>資産</p>
 	<% @journals.filter{|j| j.kind == "assets" }.each do |j| %>
-	<p><%= j.amount %></p>
+	<p><%= j.usefulness %>[<%= j.amount %>](<%= j.created_at %>)</p>
 	<% end %>
   </div>
   <div class="liabilities">
 	<p>負債</p>
 	<% @journals.filter{|j| j.kind == "liabilities" }.each do |j| %>
-	<p>-<%= j.amount %></p>
+	<p><%= j.usefulness %>[<%= j.amount %>](<%= j.created_at %>)</p>
 	<% end %>
   </div>
 </div>

@@ -28,12 +28,12 @@ body{
 }
 .assets{
 	float: left;
-	width: 50%;
+	width: 30%;
 	height: 100%;
 }
 .liabilities{
 	float: left;
-	width: 50%;
+	width: 30%;
 	height: 100%;
 }
 .main{
