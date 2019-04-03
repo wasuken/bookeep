@@ -1,7 +1,12 @@
-<%= form_for @journal, url: {:action => 'update'} do |f| %>
+<%= form_for @journal, url: {action: 'update'} do |f| %>
 <p>金額:<%= f.text_field :amount,value: @journal.amount %></p>
 <p>用途<%= f.text_field :usefulness, value: @journal.usefulness %></p>
 <p>種類:<%= select :kind, :name, [["負債","liabilities"],["資産","assets"]], selected: @journal.kind %></p>
 <%= f.hidden_field :id, value: @journal.id %>
 <%= f.submit :submit %>
+<% end %>
+
+<%= form_for @journal, url: {action: 'delete'}, method: 'delete' do |f| %>
+<%= f.hidden_field :id, value: @journal.id %>
+<%= f.submit :submit, value: '削除' %>
 <% end %>

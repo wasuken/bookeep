@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get '/journal/update', to: 'journals#update_page'
   patch '/journal', to: 'journals#update'
   post '/journal', to: 'journals#create'
+  delete '/journal', to: 'journals#delete'
 end

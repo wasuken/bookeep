@@ -26,4 +26,8 @@ class JournalsController < ApplicationController
               usefulness: params['journal']['usefulness'])
     redirect_to '/'
   end
+  def delete
+    Journal.find(params['journal']['id']).delete
+    redirect_to '/'
+  end
 end
