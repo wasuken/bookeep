@@ -1,0 +1,23 @@
+<h2>graph</h2>
+
+<div id="graph"></div>
+<script type="text/javascript">
+ var result = null
+ $.ajax({
+	 type: "GET",
+	 url: "/api/v1/journal/graph",
+	 success: function(msg){
+		 result = msg;
+		 var data = {
+			 labels: (result.assets.length > result.liabilities.length ?
+											 result.assets : result.liabilities)
+				 .map(function(v,i){return i}),
+			 series: [
+				 result.assets.map(function(v){return v.value}),
+				 result.liabilities.map(function(v){return v.value})
+			 ]
+		 };
+		 new Chartist.Line('#graph', data);
+	 }
+ });
+</script>

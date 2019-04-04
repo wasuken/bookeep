@@ -8,6 +8,22 @@ class JournalsController < ApplicationController
     render 'journals/index'
   end
 
+  def graph_all
+    sum = 0
+    liabilities_result = []
+    assets_result = []
+    Journal.where('user_id = ?', current_user.id).each do |j|
+      sum += j.amount
+      if j.kind == 'assets' then
+        assets_result.push [{value: sum}]
+      else
+        liabilities_result.push [{value: sum}]
+      end
+    end
+    render json: {assets: assets_result.flatten,
+                  liabilities: liabilities_result.flatten}
+  end
+
   def create
     Journal.create(amount: params['journal']['amount'],
                    kind: params['kind']['name'],

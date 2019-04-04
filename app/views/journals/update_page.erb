@@ -1,3 +1,4 @@
+<%= %>
 <%= form_for @journal, url: {action: 'update'} do |f| %>
 <p>金額:<%= f.text_field :amount,value: @journal.amount %></p>
 <p>用途<%= f.text_field :usefulness, value: @journal.usefulness %></p>
